@@ -1,5 +1,15 @@
 # **MainMaharashtra — Skill & Employment Outcome Tracking Platform**
 
+## **Team**
+
+Developed as a solution for **Smart India Hackathon 2026** by **Brahmastra-SIH-26**.
+-Sumit
+-Shailendra
+-Vedant
+-saurabh
+-Vinay
+-Nandni
+
 ## **SIH 2026 — Problem Statement 26135**
 
 This project is developed as a solution for **Smart India Hackathon (SIH) 2026**, under **Problem Statement 26135**.
@@ -290,6 +300,4 @@ By providing a centralized view of these indicators, the system can support more
 
 ---
 
-## **Team**
 
-Developed as a solution for **Smart India Hackathon 2026** by **Brahmastra-SIH-26**.
