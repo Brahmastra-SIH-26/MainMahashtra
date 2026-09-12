@@ -12,17 +12,167 @@ const {
   validate,
   docupload,
   cloudinary,
-} = require("../utils/security");
+} = require("../utils/ratelimit");
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 const { createProxyMiddleware } = require("http-proxy-middleware");
+const { supabase } = require("../utils/supabase");
 
 
 router.get("/", async (req, res) => {
-  res.sendFile(path.join(__dirname , "../views/dashboard.html"));
+  res.sendFile(path.join(__dirname, "../views/home.html"));
 });
 
-router.get('/viewquiz' , (req,res,next)=>{
-  res.sendFile(path.join(__dirname , "../views/view.html"));
+router.get("/dashboard", async (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/dashboard.html"));
+});
+
+router.get("/trainees", async (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/trainees.html"));
+});
+router.get("/trainers", async (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/trainers.html"));
+});
+
+router.get("/courses", async (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/courses.html"));
+});
+
+router.get("/providers", async (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/tcenters.html"));
+});
+
+router.get("/employment", async (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/employment.html"));
+});
+
+router.get("/analysis", async (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/tracking.html"));
+});
+
+router.get("/reports", async (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/reports.html"));
+});
+
+router.get("/settings", async (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/settings.html"));
+});
+
+router.get("/centers/add", async (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/an/provider.html"));
+});
+router.get("/trainees/add", async (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/an/trainee.html"));
+});
+router.get("/trainers/add", async (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/an/trainer.html"));
+});
+router.get("/courses/add", async (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/an/course.html"));
+});
+
+router.get("/trainersdata", async (req, res) => {
+  const { data: user, error } = await supabase
+    .schema('sih')
+    .from('trainers')
+    .select('*')
+    .order('id', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching trainers data:', error);
+    return res.status(500).json({ success: false, message: 'An error occurred while fetching trainers data' });
+  }
+  return res.json({ success: true, data: user });
+
+});
+
+router.get("/coursesdata", async (req, res) => {
+  const { data: user, error } = await supabase
+  .schema('sih')
+    .from('courses')
+    .select('*')
+    .order('id', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching courses data:', error);
+    return res.status(500).json({ success: false, message: 'An error occurred while fetching courses data' });
+  }
+  return res.json({ success: true, data: user });
+
+});
+
+
+
+router.get("/centresdata", async (req, res) => {
+
+  const { data: centres, error } = await supabase
+    .schema('sih')
+    .from('training_center1')
+    .select('*')
+    .order('id', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching centres data:', error);
+
+    return res.status(500).json({
+      success: false,
+      message: 'An error occurred while fetching centres data'
+    });
+  }
+
+  return res.json({
+    success: true,
+    data: centres
+  });
+});
+
+
+// Trainees
+router.get("/trackingdata", async (req, res) => {
+
+  const { data: trainees, error } = await supabase
+    .schema('sih')
+    .from('trainees')
+    .select('*')
+    .order('id', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching trainees data:', error);
+
+    return res.status(500).json({
+      success: false,
+      message: 'An error occurred while fetching trainees data'
+    });
+  }
+
+  return res.json({
+    success: true,
+    data: trainees
+  });
+});
+
+
+// Beneficiaries
+router.get("/beneficiariesdata", async (req, res) => {
+
+  const { data: beneficiaries, error } = await supabase
+    .schema('sih')
+    .from('trainees')
+    .select('*')
+    .order('id', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching beneficiaries data:', error);
+
+    return res.status(500).json({
+      success: false,
+      message: 'An error occurred while fetching beneficiaries data'
+    });
+  }
+
+  return res.json({
+    success: true,
+    data: beneficiaries
+  });
 });
 
 router.get("/alltime", (req, res, next) => {
@@ -43,10 +193,10 @@ router.post("/fingerprint", async (req, res) => {
 });
 
 router.get("/check", async (req, res) => {
-   if(req.session.userId){
+  if (req.session.userId) {
     return res.json({ login: true, userId: req.session.userId });
-   }
-   return res.json({ login: false });
+  }
+  return res.json({ login: false });
 
 
 });
@@ -55,7 +205,7 @@ router.get("/help", async (req, res) => {
   res.sendFile(path.join(__dirname, "../views/help.html"));
 });
 
-router.get("/dashboard", (req,res)=>{
+router.get("/dashboard", (req, res) => {
   res.sendFile(path.join(__dirname, "../views/dashboard.html"));
 
 });

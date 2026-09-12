@@ -8,8 +8,8 @@ Developed as a solution for **Smart India Hackathon 2026** by **Brahmastra-SIH-2
 - Shailendra
 - Vedant
 - Saurabh
-- Vinay
-- Nandni
+- Neha
+- Ruchi
 
 ## **SIH 2026 — Problem Statement 26135**
 

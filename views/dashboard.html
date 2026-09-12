@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SkillTrack Maharashtra · Dashboard</title>
+<title>Dashboard</title>
 
 <link rel="stylesheet" href="/output.css">
 
@@ -31,28 +31,31 @@
     <div class="text-[10px] tracking-wide text-muted2 px-1 pt-2.5 pb-4 font-semibold">GOVERNMENT OF MAHARASHTRA</div>
 
     <nav class="flex flex-col gap-0.5 flex-1">
-      <a class="flex items-center gap-2.5 px-2.5 py-2 rounded-[9px] text-[13.5px] font-bold bg-[#e9f1fd] text-navy" href="#">
+      <a class="flex items-center gap-2.5 px-2.5 py-2 rounded-[9px] text-[13.5px] font-bold bg-[#e9f1fd] text-navy" id="dashboardLink" href="/dashboard">
         <span class="w-[18px] text-center text-sm opacity-90">▦</span> Dashboard
       </a>
-      <a class="flex items-center gap-2.5 px-2.5 py-2 rounded-[9px] text-[13.5px] font-medium text-[#55617a] hover:bg-[#f4f6fa]" href="#">
+      <a class="flex items-center gap-2.5 px-2.5 py-2 rounded-[9px] text-[13.5px] font-medium text-[#55617a] hover:bg-[#f4f6fa]" id="traineesLink" href="/trainees">
         <span class="w-[18px] text-center text-sm opacity-90">◍</span> Trainees
       </a>
-      <a class="flex items-center gap-2.5 px-2.5 py-2 rounded-[9px] text-[13.5px] font-medium text-[#55617a] hover:bg-[#f4f6fa]" href="#">
+         <a class="flex items-center gap-2.5 px-2.5 py-2 rounded-[9px] text-[13.5px] font-medium text-[#55617a] hover:bg-[#f4f6fa]" id="trainersLink" href="/trainers">
+        <span class="w-[18px] text-center text-sm opacity-90">◍</span> Trainers
+      </a>
+      <a class="flex items-center gap-2.5 px-2.5 py-2 rounded-[9px] text-[13.5px] font-medium text-[#55617a] hover:bg-[#f4f6fa]" id="coursesLink" href="/courses">
         <span class="w-[18px] text-center text-sm opacity-90">▤</span> Courses
       </a>
-      <a class="flex items-center gap-2.5 px-2.5 py-2 rounded-[9px] text-[13.5px] font-medium text-[#55617a] hover:bg-[#f4f6fa]" href="#">
+      <a class="flex items-center gap-2.5 px-2.5 py-2 rounded-[9px] text-[13.5px] font-medium text-[#55617a] hover:bg-[#f4f6fa]" id="providersLink" href="/providers">
         <span class="w-[18px] text-center text-sm opacity-90">⌂</span> Training Providers
       </a>
-      <a class="flex items-center gap-2.5 px-2.5 py-2 rounded-[9px] text-[13.5px] font-medium text-[#55617a] hover:bg-[#f4f6fa]" href="#">
+      <a class="flex items-center gap-2.5 px-2.5 py-2 rounded-[9px] text-[13.5px] font-medium text-[#55617a] hover:bg-[#f4f6fa]" id="employmentLink" href="/employment">
         <span class="w-[18px] text-center text-sm opacity-90">💼</span> Employment Tracking
       </a>
-      <a class="flex items-center gap-2.5 px-2.5 py-2 rounded-[9px] text-[13.5px] font-medium text-[#55617a] hover:bg-[#f4f6fa]" href="#">
+      <a class="flex items-center gap-2.5 px-2.5 py-2 rounded-[9px] text-[13.5px] font-medium text-[#55617a] hover:bg-[#f4f6fa]" id="analysisLink" href="/analysis">
         <span class="w-[18px] text-center text-sm opacity-90">📶</span> Skill Gap Analysis
       </a>
-      <a class="flex items-center gap-2.5 px-2.5 py-2 rounded-[9px] text-[13.5px] font-medium text-[#55617a] hover:bg-[#f4f6fa]" href="#">
+      <a class="flex items-center gap-2.5 px-2.5 py-2 rounded-[9px] text-[13.5px] font-medium text-[#55617a] hover:bg-[#f4f6fa]" id="reportsLink" href="/reports">
         <span class="w-[18px] text-center text-sm opacity-90">▧</span> Reports
       </a>
-      <a class="flex items-center gap-2.5 px-2.5 py-2 rounded-[9px] text-[13.5px] font-medium text-[#55617a] hover:bg-[#f4f6fa]" href="#">
+      <a class="flex items-center gap-2.5 px-2.5 py-2 rounded-[9px] text-[13.5px] font-medium text-[#55617a] hover:bg-[#f4f6fa]" id="settingsLink" href="/settings">
         <span class="w-[18px] text-center text-sm opacity-90">⚙</span> Settings
       </a>
     </nav>
@@ -103,7 +106,39 @@
     </header>
 
     <!-- CONTENT -->
+     <div id="maincontent">
     <main class="p-7 pb-16 max-w-[1560px]">
+     
+
+    <div class="bg-blue-600 mb-4 text-white p-6 md:p-8 rounded-xl shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-6">
+
+    <!-- Hero Content -->
+    <div class="space-y-2">
+
+        <!-- Label -->
+        <div class="inline-flex items-center gap-2 bg-blue-700/60 text-blue-100 text-sm font-medium px-3 py-1 rounded-full border border-blue-400/30">
+            🏛️ Programme Authority
+        </div>
+
+        <!-- Heading -->
+        <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+            Authority Dashboard
+        </h1>
+
+        <!-- Description -->
+        <p class="text-blue-100 text-base sm:text-lg max-w-2xl">
+            Monitor trainees, training partners, batches and employment outcomes.
+        </p>
+
+    </div>
+
+    <!-- Create Batch Button (White bg, Blue text) -->
+    <a href="/batches/add/" class="inline-flex items-center justify-center gap-2 bg-white text-blue-600 hover:bg-blue-50 focus:ring-4 focus:ring-blue-300 font-semibold px-5 py-3 rounded-lg shadow transition-all duration-200 shrink-0">
+        <span class="text-xl font-bold leading-none">＋</span>
+        <span>Create New Batch</span>
+    </a>
+
+</div>
 
       <div class="flex items-end justify-between mb-5">
         <div>
@@ -194,6 +229,7 @@
       </section>
 
     </main>
+    </div>
   </div>
 </div>
 

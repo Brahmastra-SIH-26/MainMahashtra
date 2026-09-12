@@ -8,7 +8,6 @@ const { router } = require('./routes/index');
 const { router2 } = require('./routes/auth');
 const {router3} = require('./routes/routeforgot');
 const { router4 } = require('./utils/oauth');
-const { router5 } = require('./utils/upload');
 
 const multer = require('multer');
 const cors = require('cors');
@@ -97,7 +96,6 @@ app.use(router);
 app.use(router2);
 app.use(router3);
 app.use(router4);
-app.use(router5);
 
 app.use((req, res, next) => {
     res.status(404).send('<h1>404 Page Not Found</h1>');
@@ -110,163 +108,3 @@ app.use((req, res, next) => {
 
 module.exports = { session};
 
-
-//  sendcode.addEventListener('click', async (event) => {
-
-//   event.preventDefault(); 
-//   lockButton(sendcode);
-//    newemail= email.value;
-//   try {
-//     const response = await fetch('/signup', {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify({ name1: name1.value, phone: phone.value, email: newemail, password: password.value, confirmpass: confirmpass.value })
-//     });
-//        if(response.status===429){
-//         const data = await response.json();
-//         message.innerText = data.message;
-//         message.classList.remove('hidden');
-//         message.classList.replace('text-green-600' , 'text-red-600');
-
-
-
-//         setTimeout(()=>{
-
-//           message.innerText="";
-//          message.classList.add('hidden');
-//         message.classList.replace( 'text-red-600' , 'text-green-600');
-
-
-//         },5000)
-//         return;
-//     }
-//     if(response.status===400){
-//         const data = await response.json();
-//         message.innerText = data.message;
-
-//        message.classList.remove('hidden');
-//         message.classList.replace('text-green-600' , 'text-red-600');
-
-
-//          setTimeout(()=>{
-//     message.innerText='';
-
-//        message.classList.add('hidden');
-//         message.classList.replace( 'text-red-600' , 'text-green-600');
-
-
-//     },5000);
-//         return;
-//     }
-//     const data = await response.json();
-//     message.innerHTML =data.message;
-
-//      message.classList.remove('hidden');
-//         // message.classList.replace('text-green-600' , 'bg-red-600');
-
-//         // warn.classList.replace('bg-red-600' , 'bg-green-600');
-//      setTimeout(()=>{
-//     message.innerText='';
-
-
-//         message.classList.add('hidden');
-//         // warn.classList.replace( 'text-green-500','text-red-500');
-
-//     },5000);
-//     if(data.success){
-           
-//     sendcode.innerText='Resend';
-      
-//     }
-   
-//   } catch (err) {
-//     message.innerText='Unable to connect to server';
-
-//        message.classList.remove('hidden');
-//         message.classList.replace('text-green-600' , 'text-red-600');
-
-
-//         setTimeout(()=>{
-//           message.innerText='';
-
-//           message.classList.add('hidden');
-//         message.classList.replace( 'text-red-600' , 'text-green-600');
-
-
-//         },5000)
-//   }
-// });
-
-// verbtn.addEventListener('click', async () => {
-  
-//   lockButton(verbtn);
-//    try {
-//     const response = await fetch('/verify2', {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify({ name1: name1.value, phone: phone.value, code: code.value, email: email.value , password: password.value })
-//     });
-//        if(response.status===429){
-//         const data = await response.json();
-//         message2.innerText = data.message;
-//        message2.classList.remove('hidden');
-//         message2.classList.replace('text-green-600' , 'text-red-600');
-
-
-
-//         setTimeout(()=>{
-
-//           message2.innerText="";
-//          message2.classList.add('hidden');
-//         message2.classList.replace( 'text-red-600' , 'text-green-600');
-
-
-//         },5000)
-//        }
-    
-//     if(response.status===400){
-//         const data = await response.json();
-//         message2.innerText = data.message;
-
-//        message2.classList.remove('hidden');
-//         message2.classList.replace('text-green-600' , 'text-red-600');
-
-
-//          setTimeout(()=>{
-//     message2.innerText='';
-
-//        message2.classList.add('hidden');
-//         message2.classList.replace( 'text-red-600' , 'text-green-600');
-
-
-//     },5000);
-//         return;
-//     }
-//     const data = await response.json();
-//     message2.innerText = data.message;
-//     if(!data.success){
-//         message2.classList.replace('text-green-600' , 'text-red-600');
-//     }
-//      message2.classList.remove('hidden');
-//      setTimeout(()=>{
-//     message2.innerText='';
-//         message2.classList.add('hidden');
-//     },5000);
-    
-//     } catch (err) {
-//     message2.innerText='Unable to connect to server';
-
-//        message2.classList.remove('hidden');
-//         message2.classList.replace('text-green-600' , 'text-red-600');
-
-
-//         setTimeout(()=>{
-//           message2.innerText='';
-
-//           message2.classList.add('hidden');
-//         message2.classList.replace( 'text-red-600' , 'text-green-600');
-
-
-//     },5000);
-//   }
-// });

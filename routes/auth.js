@@ -7,8 +7,8 @@ const {Resend} = require('resend');
 const resendClient = new Resend(process.env.TOKEN);
 let verificationCodes= new Map();
 const { check } = require('express-validator');
-const { EmailLimiter , TimeLimiter ,validate,} = require('../utils/security');
-const {upload, cloudinary} = require('../utils/security');
+const { EmailLimiter , TimeLimiter ,validate,} = require('../utils/ratelimit');
+const {upload, cloudinary} = require('../utils/ratelimit');
 const validate2 = require('deep-email-validator');
 const { type } = require('os');
 const {supabase } = require('../utils/supabase');
@@ -26,40 +26,39 @@ router2.get('/logout',  TimeLimiter,(req, res) => {
   });
 });
 
+router2.get('/traineelogin', (req, res) => {
+  res.sendFile(path.join(__dirname, '../views/trainee.html'));
+});
+
+router2.get('/trainerlogin', (req, res) => {
+  res.sendFile(path.join(__dirname, '../views/trainer.html'));
+});
+
 
 router2.get('/login' ,(req, res) => {
   if (req.session.userId) {
-    return res.redirect('/');
+    return res.redirect('/dashboard');
   }
   res.sendFile(path.join(__dirname, '../views/login.html'));
 });
 
-router2.post('/logn', TimeLimiter, async(req, res) => {
+router2.post('/login', TimeLimiter, async(req, res) => {
 
-    let { password, email } = req.body;
-    email = String(email.toLowerCase().trim());
+    let { username , password } = req.body;
+    username = String(username.trim());
     password = String(password.trim());
 
-      if (email === process.env.ADMINEMAIL) {
+      if (username === process.env.ADMINUSERNAME) {
   console.log('Admin login attempt');
   }
-const result = await validate2.validate({
-  email: email,
-  validateSMTP: false, 
-});
 
-  if (!result.valid) {
-    return res.status(400).json({
-      success: false,
-      message: "This email address does not exist",
-      reason: result.reason 
-    });
-  }
     const { data: user, error } = await supabase
-    .from('allusers')
+    .schema('sih')
+    .from('siuser_profile')
     .select('*')
-    .eq('email', email)
+    .eq('username', username)
     .eq('password', password)
+    .eq('role', 'admin')
     .maybeSingle();
 
   if (error) {
@@ -68,10 +67,10 @@ const result = await validate2.validate({
 
   
   if (!user) {
-    return res.status(401).json({success:false , message: 'Invalid email or password' });
+    return res.status(401).json({success:false , message: 'Invalid username or password' });
   }
     req.session.userId = user.id; 
-  req.session.userEmail = email;
+  req.session.userEmail = user.email;
   req.session.userName = user.name;
 return res.status(200).json({ success: true, message: 'Logged in successfully!' });
        

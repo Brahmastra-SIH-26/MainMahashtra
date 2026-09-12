@@ -6,13 +6,15 @@
    your backend responds, real data takes over automatically.
    ============================================================ */
 
+   const traineesLink = document.getElementById('traineesLink');
+
+
 /* ---------- generic POST helper (as requested) ---------- */
 async function postJSON(url, payload = {}) {
   const Response = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
-    // payload: fill in whatever the endpoint needs manually
   });
   if (!Response.ok) throw new Error(url + ' responded with ' + Response.status);
   const data = await Response.json();
@@ -101,14 +103,14 @@ function toneColor(pct, high, mid) {
 }
 
 /* ============================================================
-   1. LOGIN / PROFILE  →  POST /login
+   1. LOGIN / PROFILE  →  POST /logindata
    ============================================================ */
 async function loadLogin() {
   let data;
   try {
-    data = await postJSON('/login', {});
+    data = await postJSON('/logindata', {});
   } catch (e) {
-    console.warn('[/login] using demo data:', e.message);
+    console.warn('[/logindata] using demo data:', e.message);
     data = MOCK.login;
   }
   $('#profileName').textContent = data.name || 'Unknown user';
@@ -124,10 +126,10 @@ async function loadLogin() {
 async function loadOverview() {
   let cards;
   try {
-    const data = await postJSON('/overview', {});
+    const data = await postJSON('/doverview', {});
     cards = Array.isArray(data) ? data : (data.cards || []);
   } catch (e) {
-    console.warn('[/overview] using demo data:', e.message);
+    console.warn('[/doverview] using demo data:', e.message);
     cards = MOCK.overview;
   }
 

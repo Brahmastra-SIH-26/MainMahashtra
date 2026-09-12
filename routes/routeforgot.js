@@ -11,7 +11,7 @@ let verCodes = new Map();
 const{ User} = require('./auth');
 const { check} = require('express-validator');
 const validate2  = require('deep-email-validator');
-const {TimeLimiter,EmailLimiter, validate } = require('../utils/security');
+const {TimeLimiter,EmailLimiter, validate } = require('../utils/ratelimit');
 
 
 router3.get('/forgot', (req, res) => {
